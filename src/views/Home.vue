@@ -1,18 +1,35 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+    <h1 class="title">The Development Journal</h1>
+    <div><router-link to="/new_post">Add a Post</router-link></div>
+    <BlogList :posts="posts"/>
   </div>
 </template>
 
 <script lang="ts">
-import { Options, Vue } from 'vue-class-component';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+import { defineComponent } from 'vue';
+import BlogList from '@/components/BlogList.vue';
+import { useStore } from 'vuex';
+import { Post } from '@/models/post'
 
-@Options({
+export default defineComponent({
   components: {
-    HelloWorld,
+    BlogList,
   },
+
+  setup() {
+    const posts: Post[] = useStore().getters.sortedPosts
+
+    return {
+      posts,
+    }
+  }
 })
-export default class Home extends Vue {}
 </script>
+
+<style scoped>
+.title {
+  margin: 40px 0;
+  color: gray;
+}
+</style>

@@ -3,10 +3,14 @@
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
   </div>
-  <router-view/>
+  <div id="content">
+    <router-view/>
+  </div>
 </template>
 
-<style>
+<style lang="css">
+@import "~normalize.css";
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -26,5 +30,10 @@
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+
+#content {
+  width: 60%;
+  margin: auto;
 }
 </style>
